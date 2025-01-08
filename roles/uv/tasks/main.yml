@@ -18,12 +18,6 @@
         executable: /bin/bash
       changed_when: false
 
-    - name: Verify Astral UV installation
-      ansible.builtin.command: uv version
-      register: astral_uv_verify
-      changed_when: false
-      failed_when: astral_uv_verify.rc != 0
-
     - name: Remove the Astral UV installation script
       ansible.builtin.file:
         path: /tmp/install_uv.sh
