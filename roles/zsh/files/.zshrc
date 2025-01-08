@@ -1,6 +1,7 @@
 # Activate plugins
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
 
 # History
 HISTSIZE=2000

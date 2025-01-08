@@ -31,6 +31,12 @@
     dest: "{{ ansible_env.HOME }}/.zsh/zsh-syntax-highlighting"
     force: yes
 
+- name: Add fzf-tab plugin
+  ansible.builtin.git:
+    repo: "https://github.com/Aloxaf/fzf-tab.git"
+    dest: "{{ ansible_env.HOME }}/.zsh/fzf-tab"
+    force: yes
+
 - name: Copy zsh configuration file
   ansible.builtin.copy:
     src: files/.zshrc
