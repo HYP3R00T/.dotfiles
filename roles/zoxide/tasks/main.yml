@@ -1,0 +1,20 @@
+- name: Ensure required dependencies are installed
+  ansible.builtin.package:
+    name: curl
+    state: present
+  become: true
+
+- name: Install Zoxide
+  ansible.builtin.shell:
+    cmd: |
+      curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
+- name: Add Zoxide configuration to .zshrc
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    block: |
+      eval "$(zoxide init zsh --cmd cd)"
+    marker: "# {mark} zoxide configuration"
+    create: true
+    prepend_newline: true
+    append_newline: true
