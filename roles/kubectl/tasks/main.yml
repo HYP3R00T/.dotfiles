@@ -1,0 +1,21 @@
+- name: Ensure required dependencies are installed
+  ansible.builtin.package:
+    name: curl
+    state: present
+  become: true
+
+- name: Install kubectl
+  ansible.builtin.shell:
+    cmd: |
+      curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  become: true
+
+- name: Add kubectl autocomplete to .zshrc
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    block: |
+      source <(kubectl completion zsh)
+    create: true
+    prepend_newline: true
+    append_newline: true

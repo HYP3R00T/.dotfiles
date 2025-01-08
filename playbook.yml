@@ -12,3 +12,4 @@
     - poetry
     - zoxide
     - fzf
+    - kubectl
