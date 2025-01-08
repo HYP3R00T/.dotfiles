@@ -11,5 +11,6 @@
     - uv
     - poetry
     - zoxide
-    - fzf
+    # - fzf
     - kubectl
+    # - pnpm

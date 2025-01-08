@@ -31,11 +31,11 @@
     dest: "{{ ansible_env.HOME }}/.zsh/zsh-syntax-highlighting"
     force: yes
 
-- name: Add fzf-tab plugin
-  ansible.builtin.git:
-    repo: "https://github.com/Aloxaf/fzf-tab.git"
-    dest: "{{ ansible_env.HOME }}/.zsh/fzf-tab"
-    force: yes
+# - name: Add fzf-tab plugin
+#   ansible.builtin.git:
+#     repo: "https://github.com/Aloxaf/fzf-tab.git"
+#     dest: "{{ ansible_env.HOME }}/.zsh/fzf-tab"
+#     force: yes
 
 - name: Copy zsh configuration file
   ansible.builtin.copy:
@@ -46,13 +46,13 @@
     mode: '0644'
 
 
-- name: Add fzf-tab configuration to .zshrc
-  ansible.builtin.blockinfile:
-    path: "{{ ansible_env.HOME }}/.zshrc"
-    block: |
-      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-      zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-    marker: "# {mark} fzf-tab configuration"
-    create: true
-    prepend_newline: true
-    append_newline: true
+# - name: Add fzf-tab configuration to .zshrc
+#   ansible.builtin.blockinfile:
+#     path: "{{ ansible_env.HOME }}/.zshrc"
+#     block: |
+#       zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+#       zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+#     marker: "# {mark} fzf-tab configuration"
+#     create: true
+#     prepend_newline: true
+#     append_newline: true

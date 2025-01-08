@@ -1,0 +1,10 @@
+- name: Ensure required dependencies are installed
+  ansible.builtin.package:
+    name: curl
+    state: present
+  become: true
+
+- name: Install pnpm
+  ansible.builtin.shell:
+    cmd: |
+      curl -fsSL https://get.pnpm.io/install.sh | sh -s -- --no-config
