@@ -23,7 +23,7 @@
     state: directory
     owner: "{{ ansible_env.USER }}"
     group: "{{ ansible_env.USER }}"
-    mode: '0755'
+    mode: "0755"
 
 - name: Copy Starship configuration file
   ansible.builtin.copy:
@@ -31,13 +31,12 @@
     dest: "{{ ansible_env.HOME }}/.config/starship.toml"
     owner: "{{ ansible_env.USER }}"
     group: "{{ ansible_env.USER }}"
-    mode: '0644'
+    mode: "0644"
 
 - name: Add Starship configuration to .zshrc
   ansible.builtin.blockinfile:
     path: "{{ ansible_env.HOME }}/.zshrc"
     block: |
-      # Initiate Starship prompt
       eval "$(starship init zsh)"
     marker: "# {mark} Starship configuration"
     prepend_newline: true

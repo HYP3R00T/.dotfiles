@@ -28,3 +28,22 @@
       ansible.builtin.file:
         path: /tmp/install_uv.sh
         state: absent
+
+- name: Ensure .zshrc file exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    state: touch
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+    mode: "0644"
+
+- name: Add UV configuration to .zshrc
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    block: |
+      eval "$(uv generate-shell-completion zsh)"
+      eval "$(uvx --generate-shell-completion zsh)"
+    marker: "# {mark} uv configuration"
+    create: true
+    prepend_newline: true
+    append_newline: true

@@ -29,3 +29,8 @@ if [[ -n $WT_SESSION ]]; then
     bindkey '^[OD' backward-char
     export COLORTERM='truecolor'
 fi
+
+# Add to path variable
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/share:$PATH

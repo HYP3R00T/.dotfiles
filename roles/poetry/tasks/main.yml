@@ -1,0 +1,25 @@
+- name: Ensure required dependencies are installed
+  ansible.builtin.package:
+    name: curl
+    state: present
+  become: true
+  
+- name: Check if Python Poetry binary exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/bin/poetry" 
+  register: python_poetry_binary_check
+
+- name: Ensure Python Poetry is installed
+  when: not python_poetry_binary_check.stat.exists
+  block:
+    - name: Install Python Poetry
+      ansible.builtin.shell:
+        cmd: |
+          curl -sSL https://install.python-poetry.org | python3 -
+        creates: "{{ ansible_env.HOME }}/.local/bin/poetry" 
+      # become: true
+
+- name: Verify Poetry installation
+  ansible.builtin.command:
+    cmd: "{{ ansible_env.HOME }}/.local/bin/poetry --version"
+  changed_when: false

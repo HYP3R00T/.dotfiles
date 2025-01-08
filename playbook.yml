@@ -4,7 +4,9 @@
     - vars.yml
   roles:
     - git
-    - uv
+    - tmux
     # Don't change the order below this
     - zsh
     - starship
+    - uv
+    - poetry
