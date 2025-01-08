@@ -11,3 +11,4 @@
     - uv
     - poetry
     - zoxide
+    - fzf
