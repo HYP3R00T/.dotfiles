@@ -1,3 +1,7 @@
+# Activate plugins
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # History
 HISTSIZE=2000
 HISTFILE=~/.zsh_history
@@ -34,3 +38,8 @@ fi
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/share:$PATH
+
+# Aliases
+alias ls='ls --color'
+alias py="python3"
+alias pya="source ./.venv/bin/activate"
