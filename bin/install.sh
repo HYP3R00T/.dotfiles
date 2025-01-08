@@ -5,6 +5,7 @@ set -e
 ORIGINAL_USER=${SUDO_USER:-$USER}
 USER_HOME=$(eval echo ~$ORIGINAL_USER)
 DOTFILES_DIR="$USER_HOME/.dotfiles"
+DOTFILES_REPO="https://github.com/HYP3R00T/.dotfiles.git"
 
 # Helper Function: Print Messages
 log() {
@@ -25,13 +26,21 @@ fi
 log "Updating and upgrading packages..."
 sudo apt update && sudo apt upgrade -y
 
+# Check if .dotfiles directory exists; if not, clone it
+if [ ! -d "$DOTFILES_DIR" ]; then
+    log "Cloning .dotfiles repository..."
+    sudo -u "$ORIGINAL_USER" git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
+else
+    log "Dotfiles directory already exists. Skipping clone."
+fi
+
 # Install Ansible if not present
 if ! [ -x "$(command -v ansible)" ]; then
     log "Installing Ansible..."
     sudo apt install -y software-properties-common
     sudo add-apt-repository --yes --update ppa:ansible/ansible
     sudo apt install -y ansible
-    log "Installation completed."
+    log "Ansible installation completed."
 else
     log "Ansible is already installed."
 fi
