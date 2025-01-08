@@ -16,6 +16,7 @@
     path: "{{ ansible_env.HOME }}/.zshrc"
     block: |
       source <(kubectl completion zsh)
+    marker: "# {mark} kubectl configuration"
     create: true
     prepend_newline: true
     append_newline: true

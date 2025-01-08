@@ -44,6 +44,7 @@ export PATH=$HOME/.local/share:$PATH
 alias ls='ls --color'
 alias py="python3"
 alias pya="source ./.venv/bin/activate"
+alias k="kubectl"
 
 # Completion styling
 zstyle ':completion:*' menu no
