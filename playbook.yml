@@ -5,3 +5,6 @@
   roles:
     - git
     - uv
+    # Don't change the order below this
+    - zsh
+    - starship

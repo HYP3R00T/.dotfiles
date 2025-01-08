@@ -1,0 +1,22 @@
+- name: Install zsh
+  ansible.builtin.apt: 
+    name: zsh
+    state: present
+  become: true
+  become_user: root
+  become_method: sudo
+
+- name: Set zsh as default shell
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/bin/zsh
+    state: present
+  become: true
+
+- name: Copy zsh configuration file
+  ansible.builtin.copy:
+    src: files/.zshrc
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+    mode: '0644'
