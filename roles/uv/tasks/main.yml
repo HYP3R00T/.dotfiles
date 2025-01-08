@@ -1,0 +1,30 @@
+- name: Check if Astral UV binary exists
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/bin/uv" # https://docs.astral.sh/uv/configuration/installer/#changing-the-install-path
+  register: astral_uv_binary_check
+
+- name: Ensure Astral UV is installed
+  when: not astral_uv_binary_check.stat.exists
+  block:
+    - name: Download the Astral UV installation script
+      ansible.builtin.get_url:
+        url: https://astral.sh/uv/install.sh # https://docs.astral.sh/uv/getting-started/installation/#standalone-installer
+        dest: /tmp/install_uv.sh
+        mode: "0755"
+
+    - name: Install Astral UV
+      ansible.builtin.shell: /tmp/install_uv.sh
+      args:
+        executable: /bin/bash
+      changed_when: false
+
+    - name: Verify Astral UV installation
+      ansible.builtin.command: uv version
+      register: astral_uv_verify
+      changed_when: false
+      failed_when: astral_uv_verify.rc != 0
+
+    - name: Remove the Astral UV installation script
+      ansible.builtin.file:
+        path: /tmp/install_uv.sh
+        state: absent

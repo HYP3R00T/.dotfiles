@@ -1,0 +1,7 @@
+- name: Ansible playbook
+  hosts: localhost
+  vars_files:
+    - vars.yml
+  roles:
+    - git
+    - uv
