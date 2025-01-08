@@ -42,6 +42,8 @@ if [ -x "$(command -v ansible)" ]; then
         log "Running Ansible playbook..."
         # Run ansible-playbook as the original user with sudo privileges
         sudo -u "$ORIGINAL_USER" ansible-playbook "$DOTFILES_DIR/playbook.yml" \
+            --ask-become-pass \
+            -v \
             -e "target_user=$ORIGINAL_USER" \
             -e "user_home=$USER_HOME"
     else
