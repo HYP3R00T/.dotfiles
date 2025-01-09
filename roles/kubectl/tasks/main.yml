@@ -14,9 +14,9 @@
 - name: Add kubectl autocomplete to .zshrc
   ansible.builtin.blockinfile:
     path: "{{ ansible_env.HOME }}/.zshrc"
+    marker: "# {mark} kubectl configuration"
     block: |
       source <(kubectl completion zsh)
-    marker: "# {mark} kubectl configuration"
-    create: true
+    insertafter: "# Tool configurations"
     prepend_newline: true
     append_newline: true

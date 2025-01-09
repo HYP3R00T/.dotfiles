@@ -39,5 +39,7 @@
     block: |
       eval "$(starship init zsh)"
     marker: "# {mark} Starship configuration"
+    insertafter: "# Tool configurations"
     prepend_newline: true
+    append_newline: true
   when: "'starship' in starship_version.stdout"

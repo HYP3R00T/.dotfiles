@@ -18,7 +18,8 @@
     path: "{{ ansible_env.HOME }}/.zshrc"
     block: |
       source <(fzf --zsh)
+      [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     marker: "# {mark} fzf configuration"
-    create: true
+    insertafter: "# Tool configurations"
     prepend_newline: true
     append_newline: true

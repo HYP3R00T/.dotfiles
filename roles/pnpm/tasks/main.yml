@@ -8,3 +8,30 @@
   ansible.builtin.shell:
     cmd: |
       curl -fsSL https://get.pnpm.io/install.sh | sh -s -- --no-config
+    creates: "{{ ansible_env.HOME }}/.local/share/pnpm"
+
+- name: Remove existing pnpm configuration from zshrc
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    regexp: "{{ item }}"
+    state: absent
+  loop:
+    - '# pnpm$'
+    - '^export PNPM_HOME='
+    - '^case ":.*PNPM_HOME:'
+    - '^\s*\*":.*PNPM_HOME:'
+    - '^\s*\*\) export PATH='
+    - '^esac$'
+    - '# pnpm end$'
+
+- name: Add pnpm configuration to zshrc
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    marker: "# {mark} pnpm configuration"
+    block: |
+      export PNPM_HOME="{{ ansible_env.HOME }}/.local/share/pnpm"
+      case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+      esac
+    insertafter: "# Tool configurations"

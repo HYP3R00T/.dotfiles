@@ -5,12 +5,12 @@
   roles:
     - git
     - tmux
+    - fzf
     # Don't change the order below this
     - zsh
     - starship
     - uv
     - poetry
     - zoxide
-    # - fzf
     - kubectl
-    # - pnpm
+    - pnpm

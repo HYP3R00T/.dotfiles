@@ -38,6 +38,6 @@
       eval "$(uv generate-shell-completion zsh)"
       eval "$(uvx --generate-shell-completion zsh)"
     marker: "# {mark} uv configuration"
-    create: true
+    insertafter: "# Tool configurations"
     prepend_newline: true
     append_newline: true

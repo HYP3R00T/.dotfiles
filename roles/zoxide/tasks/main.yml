@@ -15,6 +15,6 @@
     block: |
       eval "$(zoxide init zsh --cmd cd)"
     marker: "# {mark} zoxide configuration"
-    create: true
+    insertafter: "# Tool configurations"
     prepend_newline: true
     append_newline: true
