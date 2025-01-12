@@ -13,6 +13,15 @@
 - name: Run fzf install script
   ansible.builtin.command: "{{ ansible_env.HOME }}/.fzf/install --all"
 
+
+- name: Remove existing fzf configuration from zshrc
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    regexp: "{{ item }}"
+    state: absent
+  loop:
+  - '[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh'
+
 - name: Add fzf configuration to .zshrc
   ansible.builtin.blockinfile:
     path: "{{ ansible_env.HOME }}/.zshrc"
