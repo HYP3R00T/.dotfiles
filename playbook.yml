@@ -5,9 +5,9 @@
   roles:
     - git
     - tmux
-    - fzf
     # Don't change the order below this
     - zsh
+    - fzf
     - starship
     - uv
     - poetry
