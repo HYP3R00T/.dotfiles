@@ -12,6 +12,8 @@
 
 - name: Run fzf install script
   ansible.builtin.command: "{{ ansible_env.HOME }}/.fzf/install --all"
+  args:
+    creates: "{{ ansible_env.HOME }}/.fzf/bin/fzf"
 
 
 - name: Remove existing fzf configuration from zshrc
@@ -20,6 +22,7 @@
     regexp: "{{ item }}"
     state: absent
   loop:
+  - 'source <\(fzf --zsh\)'
   - '[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh'
 
 - name: Add fzf configuration to .zshrc
@@ -38,3 +41,8 @@
     insertafter: "# Tool configurations"
     prepend_newline: true
     append_newline: true
+
+- name: Verify fzf installation
+  ansible.builtin.command: "{{ ansible_env.HOME }}/.fzf/bin/fzf --version"
+  register: fzf_version
+  failed_when: fzf_version.rc != 0
