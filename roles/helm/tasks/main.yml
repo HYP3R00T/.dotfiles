@@ -17,6 +17,7 @@
       args:
         executable: /bin/bash
       changed_when: false
+      become: true
 
     - name: Remove the Helm installation script
       ansible.builtin.file:
