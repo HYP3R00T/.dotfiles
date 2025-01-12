@@ -5,6 +5,7 @@
   roles:
     - git
     - tmux
+    - helm
     # Don't change the order below this
     - zsh
     - fzf
