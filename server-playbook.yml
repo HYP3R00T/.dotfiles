@@ -1,0 +1,14 @@
+- name: Ansible playbook for Server
+  hosts: localhost
+  vars_files:
+    - vars.yml
+  roles:
+    - git
+    - tmux
+    - helm
+    # Don't change the order below this
+    - zsh
+    - fzf
+    - starship
+    - zoxide
+    - kubectl
