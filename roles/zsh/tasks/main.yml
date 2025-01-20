@@ -1,5 +1,5 @@
 - name: Install zsh
-  ansible.builtin.apt: 
+  ansible.builtin.apt:
     name: zsh
     state: present
   become: true
@@ -38,7 +38,7 @@
     dest: "{{ ansible_env.HOME }}/.zshrc"
     owner: "{{ ansible_env.USER }}"
     group: "{{ ansible_env.USER }}"
-    mode: '0644'
+    mode: "0644"
     backup: yes
 
 # Optional: Add performance optimizations for plugins
@@ -50,14 +50,13 @@
       ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
       ZSH_AUTOSUGGEST_USE_ASYNC=true
       ZSH_AUTOSUGGEST_MANUAL_REBIND=true
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="{{ zsh_autosuggest_highlight_style }}"
     insertbefore: "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
 # - name: Add fzf-tab plugin
 #   ansible.builtin.git:
 #     repo: "https://github.com/Aloxaf/fzf-tab.git"
 #     dest: "{{ ansible_env.HOME }}/.zsh/fzf-tab"
 #     force: yes
-
 
 # - name: Add fzf-tab configuration to .zshrc
 #   ansible.builtin.blockinfile:

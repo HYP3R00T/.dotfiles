@@ -1,0 +1,31 @@
+- name: Ensure required dependencies are installed
+  ansible.builtin.package:
+    name: curl
+    state: present
+  become: true
+
+- name: Install nvm
+  ansible.builtin.shell:
+    cmd: |
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+- name: Remove nvm load lines from zshrc
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    regexp: '{{ item }}'
+    state: absent
+  loop:
+  - '^\[ -s "\$NVM_DIR/nvm\.sh" \] && \\. "\$NVM_DIR/nvm\.sh"'
+  - '^\[ -s "\$NVM_DIR/bash_completion" \] && \\. "\$NVM_DIR/bash_completion"'
+  
+- name: Add nvm configuration to .zshrc
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    marker: "# {mark} nvm configuration"
+    insertafter: "# Tool configurations"
+    prepend_newline: true
+    append_newline: true

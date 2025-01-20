@@ -9,7 +9,14 @@
     cmd: |
       curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
       sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+  args:
+    chdir: "{{ ansible_env.HOME }}" # Ensure it runs in the user's home directory
   become: true
+
+- name: Remove kubectl file after installation
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/kubectl"
+    state: absent
 
 - name: Add kubectl autocomplete to .zshrc
   ansible.builtin.blockinfile:
