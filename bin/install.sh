@@ -7,7 +7,7 @@ USER_HOME=$(eval echo ~$ORIGINAL_USER)
 DOTFILES_DIR="$USER_HOME/.dotfiles"
 DOTFILES_REPO="https://github.com/HYP3R00T/.dotfiles.git"
 PLAYBOOK_FILE="playbook.yml"
-SERVER_PLAYBOOK_FILE="server-playbook.yml"
+SERVER_PLAYBOOK_FILE="playbook-server.yml"
 
 # Helper Function: Print Messages
 log() {
