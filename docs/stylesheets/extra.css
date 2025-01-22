@@ -1,8 +1,8 @@
 :root {
-  --fg: #a6adc8;
-  --fg-light: #bac2de;
-  --fg-lighter: #cdd6f4;
-  --fg-lightest: #ffffff;
+  --fg: #cdd6f4;
+  --fg-light: #cdd6f4;
+  --fg-lighter: #e6e9ef;
+  --fg-lightest: #dce0e8;
 
   --bg: #11111b;
   --bg-light: #181825;
@@ -89,8 +89,8 @@
 }
 
 [data-md-color-scheme="Dark_Blue"] {
-  --fg: #eff1f5;
-  --fg-light: #eff1f5;
+  --fg: #cdd6f4;
+  --fg-light: #cdd6f4;
   --fg-lighter: #e6e9ef;
   --fg-lightest: #dce0e8;
 
@@ -291,44 +291,7 @@
   background-color: var(--bg-lightest) !important;
 }
 
-/* ! Others */
-
-.hero-container {
-  display: flex;
-  min-height: calc(100dvh - 228px);
-}
-
-.hero {
-  position: relative;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--bg-light);
-  overflow: hidden;
-}
-
-.hero-content {
-  text-align: center;
-  max-width: 800px;
-  padding: 2rem;
-  z-index: 1;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: hsl(var(--fg));
-}
-
-.hero p {
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  color: hsl(var(--blue));
-}
-
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+::selection {
+  background-color: var(--fg-lighter);
+  color: var(--bg-light);
 }
