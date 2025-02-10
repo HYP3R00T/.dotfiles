@@ -98,6 +98,7 @@ I recommend a simple directory structure to begin with.
 
 ## References
 
+- [Creating a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)
 - [Ansible Documentation](https://docs.ansible.com/ansible/latest/index.html)
 - [Installing Ansible on specific operating systems](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html)
 - [Sample Ansible setup](https://docs.ansible.com/ansible/latest/tips_tricks/sample_setup.html)

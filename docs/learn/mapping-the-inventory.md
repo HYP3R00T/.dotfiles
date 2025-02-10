@@ -59,8 +59,6 @@ localhost | SUCCESS => {
 
 We can see the output which confirms that this host is reachable.
 
-The warning we get is because we are missing the info about interpreter (the python interpreter) in the `ansible.cfg` file.
-
 So, for now we will create a simple `inventory.yml` file.
 
 ```yaml
