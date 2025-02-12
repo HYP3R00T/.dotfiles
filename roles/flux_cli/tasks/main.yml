@@ -1,0 +1,23 @@
+- name: Ensure required dependencies are installed
+  ansible.builtin.package:
+    name: curl
+    state: present
+  become: true
+
+- name: Install fluxcd
+  ansible.builtin.shell:
+    cmd: |
+      curl -s https://fluxcd.io/install.sh | sudo bash
+  args:
+    chdir: "{{ ansible_env.HOME }}" # Ensure it runs in the user's home directory
+  become: true
+
+- name: Add fluxcd autocomplete to .zshrc
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    marker: "# {mark} fluxcd configuration"
+    block: |
+      source <(flux completion zsh)
+    insertafter: "# Tool configurations"
+    prepend_newline: true
+    append_newline: true

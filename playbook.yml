@@ -14,5 +14,6 @@
     - poetry
     - zoxide
     - kubectl
+    - flux_cli
     - nvm
     - pnpm
