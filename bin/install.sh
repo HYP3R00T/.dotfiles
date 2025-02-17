@@ -5,7 +5,7 @@ set -e
 ORIGINAL_USER=${SUDO_USER:-$USER}
 USER_HOME=$(eval echo ~$ORIGINAL_USER)
 DOTFILES_DIR="$USER_HOME/.dotfiles"
-DOTFILES_REPO="https://github.com/HYP3R00T/.dotfiles.git"
+DOTFILES_REPO="git@github.com:HYP3R00T/.dotfiles.git"
 PLAYBOOK_FILE="playbook.yml"
 SERVER_PLAYBOOK_FILE="playbook-server.yml"
 
