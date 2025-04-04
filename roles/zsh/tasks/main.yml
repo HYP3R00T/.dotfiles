@@ -1,5 +1,5 @@
 - name: Install zsh
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: zsh
     state: present
   become: true
@@ -52,6 +52,7 @@
       ZSH_AUTOSUGGEST_MANUAL_REBIND=true
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="{{ zsh_autosuggest_highlight_style }}"
     insertbefore: "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 # - name: Add fzf-tab plugin
 #   ansible.builtin.git:
 #     repo: "https://github.com/Aloxaf/fzf-tab.git"
