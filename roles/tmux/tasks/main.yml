@@ -5,7 +5,7 @@
   failed_when: tmux_check.rc != 0
 
 - name: Install Tmux if not installed
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: tmux
     state: present
   when: tmux_check.failed
