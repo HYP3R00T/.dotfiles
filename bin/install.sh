@@ -44,7 +44,7 @@ sudo apt update && sudo apt upgrade -y
 # Check if .dotfiles directory exists; if not, clone it
 if [ ! -d "$DOTFILES_DIR" ]; then
     log "Cloning .dotfiles repository..."
-    sudo -u "$ORIGINAL_USER" git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
+    git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
 else
     log "Dotfiles directory already exists. Skipping clone."
 fi
