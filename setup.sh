@@ -58,6 +58,14 @@ if ! [ -x "$(command -v mise)" ]; then
         error "Mise installation failed."
     else
         log "Mise installed at $MISE_PATH."
+        # Activate Mise in the shell
+        SHELL_CONFIG="$HOME/.bashrc"
+        if [ -n "$ZSH_VERSION" ]; then
+            SHELL_CONFIG="$HOME/.zshrc"
+        fi
+        echo "eval \"\$($MISE_PATH activate bash)\"" >>"$SHELL_CONFIG"
+        log "Mise activation command added to $SHELL_CONFIG."
+        source "$SHELL_CONFIG"
     fi
 else
     MISE_PATH=$(command -v mise)
