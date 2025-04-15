@@ -58,18 +58,22 @@ if ! [ -x "$(command -v mise)" ]; then
         error "Mise installation failed."
     else
         log "Mise installed at $MISE_PATH."
-        # Activate Mise in the shell
-        SHELL_CONFIG="$HOME/.bashrc"
-        if [ -n "$ZSH_VERSION" ]; then
-            SHELL_CONFIG="$HOME/.zshrc"
-        fi
-        echo "eval \"\$($MISE_PATH activate bash)\"" >>"$SHELL_CONFIG"
-        log "Mise activation command added to $SHELL_CONFIG."
-        source "$SHELL_CONFIG"
+        # Activate Mise in the current session
+        eval "$($MISE_PATH activate bash)"
+        log "Mise activated in the current session."
     fi
 else
     MISE_PATH=$(command -v mise)
     log "Mise is already installed at $MISE_PATH."
+    # Ensure Mise is activated in the current session
+    eval "$($MISE_PATH activate bash)"
+    log "Mise re-activated in the current session."
+fi
+
+# Ensure the session remains active
+log "Verifying Mise setup with 'mise doctor'..."
+if ! "$MISE_PATH" doctor; then
+    error "Mise setup verification failed. Please check the installation."
 fi
 
 # Install Ansible if not present
