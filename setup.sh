@@ -53,15 +53,21 @@ fi
 if ! [ -x "$(command -v mise)" ]; then
     log "Installing Mise..."
     curl https://mise.run | sh
-    log "Mise installation completed."
+    MISE_PATH=$(command -v mise)
+    if [ -z "$MISE_PATH" ]; then
+        error "Mise installation failed."
+    else
+        log "Mise installed at $MISE_PATH."
+    fi
 else
-    log "Mise is already installed."
+    MISE_PATH=$(command -v mise)
+    log "Mise is already installed at $MISE_PATH."
 fi
 
 # Install Ansible if not present
 if ! [ -x "$(command -v ansible)" ]; then
     log "Installing Ansible using Mise..."
-    mise install ansible
+    "$MISE_PATH" install ansible
     log "Ansible installation completed."
 else
     log "Ansible is already installed."
